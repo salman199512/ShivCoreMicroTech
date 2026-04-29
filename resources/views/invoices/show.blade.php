@@ -5,10 +5,7 @@
                 {{ __('Invoice Document') }}: <span class="text-indigo-600">#{{ $invoice->invoice_no }}</span>
             </h2>
             <div class="flex gap-3">
-                <button onclick="window.print()" class="inline-flex items-center px-6 py-3 bg-white border border-slate-200 rounded-xl font-bold text-sm text-slate-700 hover:bg-slate-50 transition shadow-sm">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2-2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                    Print PDF
-                </button>
+
                 <a href="{{ route('payments.index', ['invoice_id' => $invoice->id]) }}" class="btn-premium shadow-lg shadow-indigo-100">
                     Register Payment
                 </a>

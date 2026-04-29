@@ -11,15 +11,32 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        
         @vite(['resources/css/app.css', 'resources/css/premium.css', 'resources/js/app.js'])
         @stack('styles')
         <style>
-            * {
-                font-family: 'Poppins', sans-serif !important;
+            * { font-family: 'Poppins', sans-serif !important; }
+            [x-cloak] { display: none !important; }
+            
+            /* Premium Toastr Styling */
+            #toast-container > .toast {
+                border-radius: 16px !important;
+                box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.3) !important;
+                opacity: 1 !important;
+                font-weight: 700 !important;
+                padding: 18px 20px 18px 50px !important;
+                background-image: none !important;
             }
+            .toast-success { background-color: #10b981 !important; border-left: 6px solid #059669 !important; }
+            .toast-error { background-color: #f43f5e !important; border-left: 6px solid #e11d48 !important; }
+            .toast-warning { background-color: #f59e0b !important; border-left: 6px solid #d97706 !important; }
+            .toast-info { background-color: #3b82f6 !important; border-left: 6px solid #2563eb !important; }
         </style>
     </head>
     <body class="antialiased text-slate-800">
@@ -45,18 +62,41 @@
             </main>
         </div>
 
-        @if(session('success') || session('error') || session('warning') || session('status') || session('info'))
-            @php
-                $toastMessage = session('success') ?: session('error') ?: session('warning') ?: session('info') ?: session('status');
-                $toastType = session('success') ? 'success' : (session('error') ? 'error' : (session('warning') ? 'warning' : (session('info') ? 'info' : 'info')));
-            @endphp
-            <div x-data="{ show: true, message: @json($toastMessage), type: '{{ $toastType }}' }" x-show="show" x-cloak x-init="setTimeout(() => show = false, 6000)" x-transition.opacity class="premium-toast" :data-type="type">
-                <strong class="toast-title" x-text="type.charAt(0).toUpperCase() + type.slice(1)"></strong>
-                <div class="toast-body" x-text="message"></div>
-                <button type="button" class="toast-close" @click="show = false">×</button>
-            </div>
-        @endif
+    <script>
+        $(document).ready(function() {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "timeOut": "6000",
+                "showMethod": "slideDown",
+                "hideMethod": "slideUp"
+            };
 
-        @stack('scripts')
-    </body>
+            @if(session('success') || session('message') && session('alert-type') === 'success')
+                toastr.success("{{ session('success') ?: session('message') }}");
+            @endif
+
+            @if(session('error') || session('message') && session('alert-type') === 'error')
+                toastr.error("{{ session('error') ?: session('message') }}");
+            @endif
+
+            @if(session('warning') || session('message') && session('alert-type') === 'warning')
+                toastr.warning("{{ session('warning') ?: session('message') }}");
+            @endif
+
+            @if(session('info') || session('status') || session('message') && session('alert-type') === 'info')
+                toastr.info("{{ session('info') ?: session('status') ?: session('message') }}");
+            @endif
+
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    toastr.error("{{ $error }}");
+                @endforeach
+            @endif
+        });
+    </script>
+
+    @stack('scripts')
+</body>
 </html>

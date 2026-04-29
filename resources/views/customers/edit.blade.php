@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
-            {{ __('Customers') }}
-        </h2>
+        <div>
+            <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
+                {{ __('Customers') }}
+            </h2>
+            <p class="text-sm text-slate-400 font-medium">Manage your client directory and contact information.</p>
+        </div>
     </x-slot>
 
     <div class="py-8">
@@ -19,7 +22,7 @@
                 <form action="{{ route('customers.update', $customer->id) }}" method="POST" class="space-y-6">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Display Name / Company</label>

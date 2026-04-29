@@ -1,3 +1,4 @@
+<?php
 namespace App\Imports;
 
 use App\Models\Invoice;
@@ -9,23 +10,36 @@ use Carbon\Carbon;
 class InvoicesImport implements ToModel, WithHeadingRow
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
+        // Skip empty rows
+        if (!isset($row['invoice_no']) || empty($row['invoice_no'])) {
+            return null;
+        }
+
         // Find or create customer
         $customer = Customer::firstOrCreate(
-            ['email' => $row['customer_email']],
-            ['name' => $row['customer_name']]
+            ['email' => $row['email']],
+            ['name' => $row['name']]
         );
+
+        // Handle date parsing
+        $invoiceDate = $row['invoice_date'];
+        if (is_numeric($invoiceDate)) {
+            $invoiceDate = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($invoiceDate);
+        } else {
+            $invoiceDate = Carbon::parse($invoiceDate);
+        }
 
         return new Invoice([
             'invoice_no' => $row['invoice_no'],
-            'invoice_date' => Carbon::parse($row['invoice_date']),
+            'invoice_date' => $invoiceDate,
             'customer_id' => $customer->id,
-            'amount' => $row['invoice_amount'],
+            'amount' => str_replace(',', '', $row['amount']),
             'status' => 'Pending',
         ]);
     }

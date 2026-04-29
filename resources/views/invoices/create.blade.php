@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
-            {{ __('Invoices') }}
-        </h2>
+        <div>
+            <h2 class="font-black text-3xl text-slate-800 leading-tight tracking-tighter">
+                Invoices
+            </h2>
+            <p class="text-sm text-slate-400 font-medium">Track billing, revenue, and payment status.</p>
+        </div>
     </x-slot>
 
     <div class="py-8">
@@ -18,7 +21,7 @@
 
                 <form action="{{ route('invoices.store') }}" method="POST" class="space-y-6">
                     @csrf
-                    
+
                     <div>
                         <label for="customer_id" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Billed Client</label>
                         <select name="customer_id" id="customer_id" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 h-14" required>
@@ -44,7 +47,7 @@
                     <div>
                         <label for="amount" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Total Service Amount (Rs.)</label>
                         <div class="relative">
-                            <span class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 font-black text-sm">Rs.</span>
+
                             <input type="number" step="0.01" name="amount" id="amount" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14 pl-14" placeholder="0.00" required>
                         </div>
                     </div>

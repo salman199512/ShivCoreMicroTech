@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
-            {{ __('Payments') }}
-        </h2>
+        <div>
+            <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
+                {{ __('Payments') }}
+            </h2>
+            <p class="text-sm text-slate-400 font-medium">Process new payments and view transaction history.</p>
+        </div>
     </x-slot>
 
     <div class="py-8">
@@ -28,7 +31,7 @@
 
                 <form action="{{ route('payments.store') }}" method="POST" class="space-y-6">
                     @csrf
-                    
+
                     <div>
                         <label for="customer_id" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Select Active Client</label>
                         <select name="customer_id" id="customer_id" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 h-14" required>
@@ -53,7 +56,7 @@
                         <div>
                             <label for="amount" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Amount Received (Rs.)</label>
                             <div class="relative">
-                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-black text-sm">Rs.</span>
+
                                 <input type="number" step="0.01" name="amount" id="amount" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14 pl-12" placeholder="0.00" required>
                             </div>
                         </div>
@@ -78,7 +81,6 @@
     </div>
 
     @push('scripts')
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script type="text/javascript">
             $(function () {
                 $('#customer_id').change(function() {
@@ -86,7 +88,7 @@
                     if (customerId) {
                         $('#invoice_group').removeClass('hidden');
                         $('#invoice_id').empty().append('<option value="">-- Loading... --</option>');
-                        
+
                         $.get('/payments/get-invoices/' + customerId, function(data) {
                             $('#invoice_id').empty().append('<option value="">-- Choose Invoice --</option>');
                             $.each(data, function(index, invoice) {

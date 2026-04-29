@@ -1,10 +1,9 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
+    <header class="mb-8 border-b border-slate-50 pb-6">
+        <h2 class="text-xl font-black text-slate-800 tracking-tighter">
             {{ __('Update Password') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="text-sm text-slate-400 font-medium mt-1">
             {{ __('Ensure your account is using a long, random password to stay secure.') }}
         </p>
     </header>
@@ -31,8 +30,13 @@
             <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="flex items-center gap-4 pt-4">
+            <button type="submit" class="btn-vibrant w-[150px] justify-center text-sm py-3 tracking-[0.12em]">
+                {{ __('Submit') }}
+            </button>
+            <a href="{{ route('dashboard') }}" class="btn-vibrant btn-danger w-[150px] justify-center text-sm py-3 tracking-[0.12em]">
+                {{ __('Cancel') }}
+            </a>
 
             @if (session('status') === 'password-updated')
                 <p
@@ -40,7 +44,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
+                    class="text-sm text-emerald-500 font-bold"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>

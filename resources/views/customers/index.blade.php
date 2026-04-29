@@ -1,11 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center animate-fade-up">
-            <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
-            {{ __('Customers') }}
-        </h2>
+            <div>
+                <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
+                    {{ __('Customers') }}
+                </h2>
+                <p class="text-sm text-slate-400 font-medium">Manage your client directory and contact information.</p>
+            </div>
+
             <a href="{{ route('customers.create') }}" class="btn-vibrant">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                <svg class="w-4 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 Add Customer
             </a>
         </div>
@@ -45,7 +49,6 @@
     @endpush
 
     @push('scripts')
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
         <script type="text/javascript">

@@ -22,12 +22,12 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="vibrant-card vibrant-card-indigo p-8 animate-fade-up" style="animation-delay: 0.1s">
                     <div class="flex items-center mb-8">
-                        <div class="w-14 h-14 bg-primary-gradient text-white rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-100 me-6">
+                        <div class="w-14 h-14 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-100 me-6" style="background: var(--primary-gradient)">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-indigo-400 tracking-[0.2em] mb-1">Total Invoiced</p>
-                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format($totalInvoiced, 2) }}</p>
+                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ $totalInvoiced >= 1000000 ? number_format($totalInvoiced / 1000000, 1) . 'M' : ($totalInvoiced >= 1000 ? number_format($totalInvoiced / 1000, 1) . 'K' : number_format($totalInvoiced, 2)) }}</p>
                         </div>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
@@ -37,12 +37,12 @@
 
                 <div class="vibrant-card vibrant-card-success p-8 animate-fade-up" style="animation-delay: 0.2s">
                     <div class="flex items-center mb-8">
-                        <div class="w-14 h-14 bg-success-gradient text-white rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-100 me-6">
+                        <div class="w-14 h-14 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-100 me-6" style="background: var(--success-gradient)">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-emerald-500 tracking-[0.2em] mb-1">Total Received</p>
-                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format($totalReceived, 2) }}</p>
+                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ $totalReceived >= 1000000 ? number_format($totalReceived / 1000000, 1) . 'M' : ($totalReceived >= 1000 ? number_format($totalReceived / 1000, 1) . 'K' : number_format($totalReceived, 2)) }}</p>
                         </div>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
@@ -52,12 +52,12 @@
 
                 <div class="vibrant-card vibrant-card-danger p-8 animate-fade-up" style="animation-delay: 0.3s">
                     <div class="flex items-center mb-8">
-                        <div class="w-14 h-14 bg-danger-gradient text-white rounded-2xl flex items-center justify-center shadow-lg shadow-rose-100 me-6">
+                        <div class="w-14 h-14 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-rose-100 me-6" style="background: var(--danger-gradient)">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-rose-500 tracking-[0.2em] mb-1">Total Outstanding</p>
-                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format($totalDue, 2) }}</p>
+                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ $totalDue >= 1000000 ? number_format($totalDue / 1000000, 1) . 'M' : ($totalDue >= 1000 ? number_format($totalDue / 1000, 1) . 'K' : number_format($totalDue, 2)) }}</p>
                         </div>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
@@ -68,7 +68,7 @@
 
             <!-- Recent Activity -->
             <div class="vibrant-card p-8 animate-fade-up" style="animation-delay: 0.4s">
-                <div class="flex justify-between items-center mb-10 pb-6 border-b border-slate-50">
+                <div class="flex justify-between items-center mb-10 pb-6 border-b border-slate-50" style="margin-bottom: 0;">
                     <div>
                         <h3 class="text-2xl font-black text-slate-800 tracking-tighter">Real-time Revenue Stream</h3>
                         <p class="text-sm text-slate-400 font-medium">Monitoring the latest inbound transactions and billing cycles.</p>

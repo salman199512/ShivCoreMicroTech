@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
-            {{ __('Setting') }}
-        </h2>
+        <div>
+            <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
+                {{ __('Setting') }}
+            </h2>
+            <p class="text-sm text-slate-400 font-medium">Configure your business profile and automation rules.</p>
+        </div>
     </x-slot>
 
     <div class="py-8">
