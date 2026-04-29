@@ -1,15 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div>
+            <h2 class="font-black text-3xl text-slate-800 leading-tight tracking-tighter mb-1">
+                {{ __('Dashboard') }}
+            </h2>
+            <p class="text-sm text-slate-400 font-medium">Welcome back! Here's your revenue overview</p>
+        </div>
     </x-slot>
 
     @php
         $totalInvoiced = \App\Models\Invoice::sum('amount');
         $totalReceived = \App\Models\Payment::sum('amount');
         $totalDue = $totalInvoiced - $totalReceived;
-        
+
         $recentInvoices = \App\Models\Invoice::with('customer')->latest()->take(5)->get();
     @endphp
 
@@ -70,18 +73,18 @@
                         <h3 class="text-2xl font-black text-slate-800 tracking-tighter">Real-time Revenue Stream</h3>
                         <p class="text-sm text-slate-400 font-medium">Monitoring the latest inbound transactions and billing cycles.</p>
                     </div>
-                    <a href="{{ route('invoices.index') }}" class="btn-vibrant py-3 px-6 text-xs uppercase tracking-widest">
-                        Intelligence Hub &rarr;
+                    <a href="{{ route('invoices.index') }}" class="btn-vibrant py-3 px-8 text-xs uppercase tracking-widest whitespace-nowrap shadow-lg shadow-indigo-100">
+                        View All &rarr;
                     </a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left premium-table">
                         <thead>
                             <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                                <th class="pb-6">Customer Segment</th>
-                                <th class="pb-6">Doc Ref</th>
-                                <th class="pb-6 text-right">Settlement Value</th>
-                                <th class="pb-6 text-center">Lifecycle Stage</th>
+                                <th class="pb-6">Customer</th>
+                                <th class="pb-6">Invoice No.</th>
+                                <th class="pb-6">Amount</th>
+                                <th class="pb-6">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,8 +92,8 @@
                                 <tr class="hover:bg-slate-50 transition-colors border-b border-slate-50/50 last:border-0 group">
                                     <td class="py-6 font-bold text-slate-700">{{ $invoice->customer->name }}</td>
                                     <td class="py-6 text-indigo-400 font-black">#{{ $invoice->invoice_no }}</td>
-                                    <td class="py-6 text-right font-black text-slate-900">Rs. {{ number_format($invoice->amount, 2) }}</td>
-                                    <td class="py-6 text-center">
+                                    <td class="py-6 font-black text-slate-900">Rs. {{ number_format($invoice->amount, 2) }}</td>
+                                    <td class="py-6">
                                         <span class="px-5 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest
                                             @if($invoice->status == 'Paid') bg-emerald-50 text-emerald-600
                                             @elseif($invoice->status == 'Partial') bg-amber-50 text-amber-600
@@ -100,6 +103,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>

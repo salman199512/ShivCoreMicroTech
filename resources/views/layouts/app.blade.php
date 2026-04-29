@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +16,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/css/premium.css', 'resources/js/app.js'])
         @stack('styles')
+        <style>
+            * {
+                font-family: 'Poppins', sans-serif !important;
+            }
+        </style>
     </head>
     <body class="antialiased text-slate-800">
         <div class="min-h-screen relative overflow-hidden">
@@ -26,8 +32,10 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-3 relative z-10">
-                    {{ $header }}
+                <header class="border-b border-slate-100/50 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm relative z-10">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                        {{ $header }}
+                    </div>
                 </header>
             @endisset
 

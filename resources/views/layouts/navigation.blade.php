@@ -5,30 +5,27 @@
             <div class="flex items-center gap-3">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 bg-[linear-gradient(135deg,#6366f1_0%,#a855f7_100%)] rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-                             <x-application-logo class="block h-5 w-auto fill-current text-white" />
-                        </div>
-                        <span class="text-base font-black tracking-tighter text-slate-800">Invoice<span class="text-indigo-600">Pro</span></span>
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 group">
+                        <x-application-logo class="h-6 w-auto max-w-[120px] group-hover:scale-105 transition-transform duration-300 object-contain" style="width: 253px; height: 72px;padding: 5px 0;" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-5 sm:-my-px sm:ms-6 sm:flex items-center">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
-                        {{ __('Overview') }}
+                        {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers*')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
-                        {{ __('Clients') }}
+                        {{ __('Customers') }}
                     </x-nav-link>
                     <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices*')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
-                        {{ __('Revenue') }}
+                        {{ __('Invoices') }}
                     </x-nav-link>
                     <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments*')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
-                        {{ __('Treasury') }}
+                        {{ __('Payments') }}
                     </x-nav-link>
                     <x-nav-link :href="route('settings.edit')" :active="request()->routeIs('settings*')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
-                        {{ __('Systems') }}
+                        {{ __('Setting') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -85,6 +82,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('customers.index')" :active="request()->routeIs('customers*')">
+                {{ __('Customers') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices*')">
+                {{ __('Invoices') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments*')">
+                {{ __('Payments') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('settings.edit')" :active="request()->routeIs('settings*')">
+                {{ __('Setting') }}
             </x-responsive-nav-link>
         </div>
 

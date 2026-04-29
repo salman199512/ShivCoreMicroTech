@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
-            {{ __('Organization Settings') }}
+            {{ __('Setting') }}
         </h2>
     </x-slot>
 
@@ -83,9 +83,12 @@
                             </div>
                         </div>
                         
-                        <div class="mt-10 flex justify-end">
-                            <button type="submit" class="btn-premium shadow-xl shadow-indigo-100 px-12 py-4 text-sm tracking-widest uppercase">
-                                Deploy Systems Configuration
+                        <div class="mt-10 flex items-center justify-end gap-4">
+                            <a href="{{ route('dashboard') }}" class="w-[150px] btn-vibrant btn-danger">
+                                Cancel
+                            </a>
+                            <button type="submit" class="w-[150px] btn-premium shadow-xl shadow-indigo-100 py-4 text-sm tracking-widest uppercase">
+                                Submit
                             </button>
                         </div>
                     </div>

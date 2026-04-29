@@ -25,7 +25,7 @@ class CustomerController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        
+
         return view('customers.index');
     }
 
@@ -60,7 +60,7 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         $customer = Customer::with('invoices.payments')->findOrFail($id);
-        
+
         $stats = [
             'total' => $customer->invoices->sum('amount'),
             'received' => $customer->invoices->sum(fn($i) => $i->payments->sum('amount')),

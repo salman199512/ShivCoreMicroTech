@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center animate-fade-up">
             <h2 class="font-black text-3xl text-slate-800 leading-tight tracking-tighter">
-                Revenue <span class="text-indigo-600">Intelligence</span>
+                Invoices
             </h2>
             <div class="flex gap-4">
                 <button onclick="toggleImport()" class="inline-flex items-center px-6 py-3 bg-white border border-slate-200 rounded-2xl font-black text-xs uppercase tracking-widest text-slate-700 hover:bg-slate-50 transition shadow-sm">
@@ -11,7 +11,7 @@
                 </button>
                 <a href="{{ route('invoices.create') }}" class="btn-vibrant">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    Commit New Bill
+                    Add Invoice
                 </a>
             </div>
         </div>
@@ -48,13 +48,13 @@
                 <table class="w-full premium-table invoice-datatable">
                     <thead>
                         <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                            <th>Index</th>
-                            <th>Reference ID</th>
-                            <th>Cycle Date</th>
-                            <th>Client Identity</th>
-                            <th class="text-right">Settlement Unit</th>
-                            <th class="text-center">Lifecycle Status</th>
-                            <th width="100px" class="text-center">Action</th>
+                            <th>ID</th>
+                            <th>Invoice No.</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th width="100px">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-slate-600 font-bold">

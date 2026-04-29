@@ -13,9 +13,9 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            'company_name' => 'InvoicePro Solutions',
+            'company_name' => 'ShivCore Micro Tech',
             'company_logo' => '',
-            'company_email' => 'contact@invoicepro.com',
+            'company_email' => 'contact@shivcore.com',
             'company_phone' => '+1 234 567 890',
             'team1_days' => '60',
             'team2_days' => '5',

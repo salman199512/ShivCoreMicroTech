@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
-            {{ __('Generate Service Invoice') }}
+            {{ __('Invoices') }}
         </h2>
     </x-slot>
 
@@ -49,10 +49,13 @@
                         </div>
                     </div>
 
-                    <div class="pt-4">
-                        <button type="submit" class="w-full btn-premium py-3 text-sm uppercase tracking-[0.2em]">
-                            Generate & Commit Invoice
+                    <div class="pt-6 flex items-center gap-4">
+                        <button type="submit" class="w-[150px] btn-premium py-4 text-sm uppercase tracking-[0.2em]">
+                            Submit
                         </button>
+                        <a href="{{ route('invoices.index') }}" class="w-[150px] btn-vibrant btn-danger">
+                            Cancel
+                        </a>
                     </div>
                 </form>
             </div>

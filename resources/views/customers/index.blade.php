@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center animate-fade-up">
-            <h2 class="font-black text-3xl text-slate-800 leading-tight tracking-tighter">
-                Customer <span class="text-indigo-600">Ecosystem</span>
-            </h2>
+            <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
+            {{ __('Customers') }}
+        </h2>
             <a href="{{ route('customers.create') }}" class="btn-vibrant">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                Deploy New Client
+                Add Customer
             </a>
         </div>
     </x-slot>
@@ -17,12 +17,10 @@
                 <table class="w-full premium-table customer-datatable">
                     <thead>
                         <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                            <th>Identity ID</th>
-                            <th>Global Descriptor</th>
-                            <th>Secure Communication</th>
-                            <th>Tier 1 Lead</th>
-                            <th>Tier 2 Lead</th>
-                            <th width="180px" class="text-center">Operations</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th width="180px">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-slate-600 font-bold">
@@ -60,8 +58,6 @@
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                         {data: 'name', name: 'name'},
                         {data: 'email', name: 'email'},
-                        {data: 'team1_days', name: 'team1_days'},
-                        {data: 'team2_days', name: 'team2_days'},
                         {data: 'action', name: 'action', orderable: false, searchable: false},
                     ]
                 });
