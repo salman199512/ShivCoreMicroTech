@@ -108,6 +108,89 @@
                 white-space: nowrap !important;
                 flex-shrink: 0 !important;
             }
+
+            /* Custom Mobile Bottom Navigation Style */
+            @media (min-width: 769px) {
+                .mobile-bottom-nav {
+                    display: none !important;
+                }
+            }
+            @media (max-width: 768px) {
+                .mobile-bottom-nav {
+                    display: flex !important;
+                    position: fixed !important;
+                    bottom: 0 !important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    z-index: 100 !important;
+                    background: rgba(255, 255, 255, 0.95) !important;
+                    backdrop-filter: blur(12px) !important;
+                    border-top: 1px solid rgba(226, 232, 240, 0.9) !important;
+                    padding: 0.5rem 0 !important;
+                    justify-content: space-around !important;
+                    align-items: center !important;
+                    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.08) !important;
+                    height: 64px !important;
+                }
+                .mobile-bottom-nav a {
+                    flex: 1 !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    text-align: center !important;
+                    color: #64748b !important;
+                    text-decoration: none !important;
+                    gap: 0.15rem !important;
+                    height: 100% !important;
+                    padding: 4px 0 !important;
+                    min-width: 0 !important;
+                }
+                .mobile-bottom-nav a:hover, .mobile-bottom-nav a.active {
+                    color: #4f46e5 !important;
+                }
+                .mobile-bottom-nav a span {
+                    font-size: 11px !important;
+                    font-weight: 800 !important;
+                    letter-spacing: 0.05em !important;
+                    text-transform: uppercase !important;
+                    margin-top: 2px !important;
+                    display: block !important;
+                }
+                .mobile-bottom-nav svg {
+                    width: 22px !important;
+                    height: 22px !important;
+                    display: block !important;
+                    margin: 0 auto !important;
+                }
+            }
+
+            /* Fix Invoice Import section on Desktop */
+            .import-flex-row {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                gap: 1.5rem !important;
+            }
+            .import-flex-row .flex-grow {
+                flex-grow: 1 !important;
+                width: auto !important;
+            }
+            .import-flex-row button {
+                width: auto !important;
+            }
+            @media (max-width: 768px) {
+                .import-flex-row {
+                    flex-direction: column !important;
+                    align-items: stretch !important;
+                    gap: 1rem !important;
+                }
+                .import-flex-row button {
+                    width: 100% !important;
+                }
+            }
         </style>
     </head>
     <body class="antialiased text-slate-800">
@@ -128,9 +211,43 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="relative z-10">
+            <main class="relative z-10 pb-20 md:pb-0">
                 {{ $slot }}
             </main>
+
+            <!-- Mobile Bottom Fixed Navigation -->
+            <div class="mobile-bottom-nav">
+                <a href="{{ route('customers.index') }}">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <span>Customer</span>
+                </a>
+                
+                <a href="{{ route('invoices.index') }}">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Invoice</span>
+                </a>
+                
+                <a href="{{ route('payments.index') }}">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Payment</span>
+                </a>
+
+                <form id="mobile-logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('mobile-logout-form').submit();">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </div>
         </div>
 
     <script>

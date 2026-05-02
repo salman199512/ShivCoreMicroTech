@@ -41,11 +41,11 @@
                 </div>
                 <form action="{{ route('invoices.import') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 bg-white p-4 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="import-flex-row bg-white p-4 rounded-3xl border border-slate-100 shadow-sm">
                         <div class="flex-grow">
                             <input type="file" name="file" class="block w-full text-sm text-slate-500 file:mr-3 sm:file:mr-6 file:py-3 sm:file:py-4 file:px-4 sm:file:px-8 file:rounded-2xl file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-indigo-600 file:text-white hover:file:bg-black transition cursor-pointer" required>
                         </div>
-                        <button type="submit" class="btn-vibrant py-4 px-10 text-xs sm:w-auto w-full">Upload</button>
+                        <button type="submit" class="btn-vibrant py-4 px-10 text-xs">Upload</button>
                     </div>
                 </form>
             </div>
