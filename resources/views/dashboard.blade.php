@@ -70,7 +70,7 @@
             <div class="vibrant-card p-8 animate-fade-up" style="animation-delay: 0.4s">
                 <div class="flex justify-between items-center mb-10 pb-6 border-b border-slate-50" style="margin-bottom: 0;">
                     <div>
-                        <h3 class="text-2xl font-black text-slate-800 tracking-tighter">Real-time Revenue Stream</h3>
+                        <h3 class="text-2xl font-black text-slate-800 tracking-tighter">Latest Invoices</h3>
                         <p class="text-sm text-slate-400 font-medium">Monitoring the latest inbound transactions and billing cycles.</p>
                     </div>
                     <a href="{{ route('invoices.index') }}" class="btn-vibrant py-3 px-8 text-xs uppercase tracking-widest whitespace-nowrap shadow-lg shadow-indigo-100">

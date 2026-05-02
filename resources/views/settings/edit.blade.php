@@ -13,7 +13,7 @@
             <form action="{{ route('settings.update') }}" method="POST">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
+
                     <!-- Business Identity -->
                     <div class="premium-card p-8">
                         <div class="flex items-center gap-4 mb-8">
@@ -25,7 +25,7 @@
                                 <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Public Profile Settings</p>
                             </div>
                         </div>
-                        
+
                         <div class="space-y-6">
                             <div>
                                 <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Legal Company Name</label>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="mt-12 flex items-center justify-center gap-6">
+                <div class="mt-12 flex items-center justify-center gap-6" style="float: right; margin-top: 20px;">
                     <a href="{{ route('dashboard') }}" class="w-[200px] btn-vibrant btn-danger py-4 text-sm font-black uppercase tracking-widest">
                         Cancel
                     </a>

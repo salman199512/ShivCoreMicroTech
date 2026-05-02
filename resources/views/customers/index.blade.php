@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center animate-fade-up">
+        <div class="responsive-header animate-fade-up">
             <div>
                 <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
                     {{ __('Customers') }}
@@ -18,18 +18,20 @@
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="vibrant-card p-8 animate-fade-up" style="animation-delay: 0.2s">
-                <table class="w-full premium-table customer-datatable">
-                    <thead>
-                        <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th width="180px">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-slate-600 font-bold">
-                    </tbody>
-                </table>
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full premium-table customer-datatable">
+                        <thead>
+                            <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th width="180px">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-600 font-bold">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

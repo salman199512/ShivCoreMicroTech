@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center animate-fade-up">
+        <div class="responsive-header animate-fade-up">
             <h2 class="font-black text-3xl text-slate-800 leading-tight tracking-tighter">
                 Client <span class="text-indigo-600">Profile</span>: {{ $customer->name }}
             </h2>
@@ -57,7 +57,7 @@
 
             <!-- Invoice History Table -->
             <div class="vibrant-card p-8 animate-fade-up" style="animation-delay: 0.4s">
-                <h3 class="text-2xl font-black text-slate-800 mb-10 tracking-tighter">Financial Audit Logs</h3>
+                <h3 class="text-2xl font-black text-slate-800 mb-10 tracking-tighter">Invoices</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left premium-table">
                         <thead>

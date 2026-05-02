@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        <div class="responsive-header">
             <h2 class="font-black text-2xl text-slate-800 leading-tight tracking-tight">
                 {{ __('Invoice Document') }}: <span class="text-indigo-600">#{{ $invoice->invoice_no }}</span>
             </h2>
@@ -58,6 +58,7 @@
 
                         <div class="space-y-6">
                             <h4 class="text-xs font-black text-slate-900 uppercase tracking-widest">Transaction History</h4>
+                            <div class="overflow-x-auto w-full">
                             <table class="w-full text-left">
                                 <thead class="text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-50">
                                     <tr>
@@ -83,23 +84,44 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Timeline / Notifications Card -->
                 <div class="space-y-6">
-                    <div class="premium-card p-7 bg-slate-900 text-white border-none">
-                        <h4 class="text-xs font-black uppercase tracking-widest text-indigo-400 mb-8 border-b border-white/5 pb-4">Communication Timeline</h4>
+                    <div class="premium-card p-7 bg-white shadow-xl shadow-slate-100 mb-6">
+                        <h4 class="text-xs font-black uppercase tracking-widest text-indigo-600 mb-8 border-b border-slate-50 pb-4">Communication Timeline</h4>
                         <div class="space-y-6">
                             @forelse($invoice->emailLogs as $log)
-                                <div class="relative pl-8 before:content-[''] before:absolute before:left-3 before:top-2 before:bottom-0 before:w-[2px] before:bg-white/10 last:before:hidden">
-                                    <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-indigo-500 border-4 border-slate-900"></div>
-                                    <p class="text-[10px] font-black uppercase tracking-widest text-white mb-1">{{ ucfirst($log->type) }} Sent</p>
-                                    <p class="text-xs text-indigo-200 font-medium">{{ Carbon\Carbon::parse($log->sent_at)->diffForHumans() }}</p>
+                                <div class="relative pl-8 before:content-[''] before:absolute before:left-3 before:top-2 before:bottom-0 before:w-[2px] before:bg-slate-100 last:before:hidden">
+                                    <div style="background: red;" class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white shadow-sm"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-xs font-black text-slate-800 tracking-wide uppercase">
+                                            @if($log->type == 'team1')
+                                                Team 1 Reminder
+                                            @elseif($log->type == 'team2')
+                                                Team 2 Reminder
+                                            @else
+                                                Recurring Reminder
+                                            @endif
+                                        </span>
+                                        <span class="text-xs font-semibold text-slate-500 mt-0.5">
+                                            Sent on: <strong class="text-indigo-600">{{ Carbon\Carbon::parse($log->sent_at)->format('d M, Y \a\t h:i A') }}</strong>
+                                        </span>
+                                        <span class="text-[10px] font-medium text-slate-400 mt-0.5">
+                                            ({{ Carbon\Carbon::parse($log->sent_at)->diffForHumans() }})
+                                        </span>
+                                    </div>
                                 </div>
                             @empty
-                                <p class="text-xs text-slate-500 font-medium italic">No automated reminders have been triggered yet.</p>
+                                <div class="text-center py-6">
+                                    <div class="opacity-20 flex justify-center mb-2">
+                                        <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </div>
+                                    <p class="text-xs text-slate-400 font-medium italic">No automated reminders have been triggered yet.</p>
+                                </div>
                             @endforelse
                         </div>
                     </div>

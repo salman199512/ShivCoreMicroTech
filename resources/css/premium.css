@@ -619,22 +619,9 @@ input:not([type="checkbox"]):not([type="radio"]):focus, select:focus, textarea:f
     }
 
     .premium-table {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .premium-table thead,
-    .premium-table tbody,
-    .premium-table tr,
-    .premium-table th,
-    .premium-table td {
-        display: table;
-        width: 100%;
-    }
-
-    .premium-table tbody tr {
-        display: table-row;
+        min-width: 650px !important;
+        display: table !important;
+        width: 100% !important;
     }
 
     .btn-vibrant {

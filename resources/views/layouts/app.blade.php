@@ -37,6 +37,77 @@
             .toast-error { background-color: #f43f5e !important; border-left: 6px solid #e11d48 !important; }
             .toast-warning { background-color: #f59e0b !important; border-left: 6px solid #d97706 !important; }
             .toast-info { background-color: #3b82f6 !important; border-left: 6px solid #2563eb !important; }
+
+            /* Table Force Normal Render on Mobile */
+            @media (max-width: 768px) {
+                .premium-table, table {
+                    display: table !important;
+                    min-width: 600px !important;
+                    width: 100% !important;
+                }
+                .premium-table thead, table thead {
+                    display: table-header-group !important;
+                }
+                .premium-table tbody, table tbody {
+                    display: table-row-group !important;
+                }
+                .premium-table tr, table tr {
+                    display: table-row !important;
+                }
+                .premium-table th, table th, .premium-table td, table td {
+                    display: table-cell !important;
+                }
+                .overflow-x-auto {
+                    overflow-x: auto !important;
+                    -webkit-overflow-scrolling: touch !important;
+                }
+            }
+
+            /* Responsive Header Helper */
+            .responsive-header {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                gap: 1.5rem !important;
+                width: 100% !important;
+                text-align: left !important;
+            }
+            .responsive-header > div {
+                text-align: left !important;
+            }
+            @media (max-width: 768px) {
+                .responsive-header {
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                    gap: 1rem !important;
+                }
+            }
+
+            /* Disable desktop scrollbar on overflow-x-auto elements */
+            @media (min-width: 769px) {
+                .overflow-x-auto {
+                    overflow-x: visible !important;
+                }
+                header > div,
+                header .flex,
+                .responsive-header {
+                    display: flex !important;
+                    flex-direction: row !important;
+                    justify-content: space-between !important;
+                    align-items: center !important;
+                    text-align: left !important;
+                }
+                header h2, header h2 span, header p, .responsive-header div {
+                    text-align: left !important;
+                }
+            }
+
+            /* Prevent button text wrapping globally on all viewports */
+            .btn-vibrant, .btn-premium, button, a.inline-flex, a.btn-vibrant, a.btn-premium, .inline-flex {
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+            }
         </style>
     </head>
     <body class="antialiased text-slate-800">

@@ -23,7 +23,7 @@
                     @csrf
 
                     <div>
-                        <label for="customer_id" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Billed Client</label>
+                        <label for="customer_id" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Customer</label>
                         <select name="customer_id" id="customer_id" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 h-14" required>
                             <option value="">-- Choose Target Client --</option>
                             @foreach($customers as $customer)
@@ -34,18 +34,18 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="invoice_no" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Internal Reference No</label>
+                            <label for="invoice_no" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Invoice No</label>
                             <input type="text" name="invoice_no" id="invoice_no" value="INV-{{ strtoupper(Str::random(6)) }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14" required>
                         </div>
 
                         <div>
-                            <label for="invoice_date" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Issuance Date</label>
+                            <label for="invoice_date" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Invoice Date</label>
                             <input type="date" name="invoice_date" id="invoice_date" value="{{ date('Y-m-d') }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14" required>
                         </div>
                     </div>
 
                     <div>
-                        <label for="amount" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Total Service Amount (Rs.)</label>
+                        <label for="amount" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Total Amount (Rs.)</label>
                         <div class="relative">
 
                             <input type="number" step="0.01" name="amount" id="amount" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14 pl-14" placeholder="0.00" required>
