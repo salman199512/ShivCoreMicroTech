@@ -6,6 +6,13 @@
             </h2>
             <div class="flex gap-3">
 
+                <form action="{{ route('invoices.remind', $invoice->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn-premium shadow-lg shadow-slate-100 bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center h-full">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        Send Reminder
+                    </button>
+                </form>
                 <a href="{{ route('payments.index', ['invoice_id' => $invoice->id]) }}" class="btn-premium shadow-lg shadow-indigo-100">
                     Register Payment
                 </a>
@@ -100,17 +107,17 @@
                                     <div class="flex flex-col">
                                         <span class="text-xs font-black text-slate-800 tracking-wide uppercase">
                                             @if($log->type == 'team1')
-                                                Team 1 Reminder
+                                                Reminder 1
                                             @elseif($log->type == 'team2')
-                                                Team 2 Reminder
+                                                Reminder 2
                                             @else
                                                 Recurring Reminder
                                             @endif
                                         </span>
-                                        <span class="text-xs font-semibold text-slate-500 mt-0.5">
+                                        <span class="text-xs  text-slate-500 mt-0.5">
                                             Sent on: <strong class="text-indigo-600">{{ Carbon\Carbon::parse($log->sent_at)->format('d M, Y \a\t h:i A') }}</strong>
                                         </span>
-                                        <span class="text-[10px] font-medium text-slate-400 mt-0.5">
+                                        <span class="text-[10px] font-medium  mt-0.5">
                                             ({{ Carbon\Carbon::parse($log->sent_at)->diffForHumans() }})
                                         </span>
                                     </div>

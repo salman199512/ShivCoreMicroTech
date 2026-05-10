@@ -12,18 +12,18 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+        <link rel="stylesheet" href="{{ asset('style.css') }}">
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        
-        @vite(['resources/css/app.css', 'resources/css/premium.css', 'resources/js/app.js'])
+
+        @vite(['resources/css/app.css', 'resources/css/premium.css', 'resources/css/custom-checkbox.css', 'resources/js/app.js'])
         @stack('styles')
         <style>
             * { font-family: 'Poppins', sans-serif !important; }
             [x-cloak] { display: none !important; }
-            
+
             /* Premium Toastr Styling */
             #toast-container > .toast {
                 border-radius: 16px !important;
@@ -223,14 +223,14 @@
                     </svg>
                     <span>Customer</span>
                 </a>
-                
+
                 <a href="{{ route('invoices.index') }}">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
                     <span>Invoice</span>
                 </a>
-                
+
                 <a href="{{ route('payments.index') }}">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>

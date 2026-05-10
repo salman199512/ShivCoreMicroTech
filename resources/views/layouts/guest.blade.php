@@ -7,14 +7,14 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-
+        <link rel="stylesheet" href="{{ asset('style.css') }}">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/css/premium.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/css/premium.css', 'resources/css/custom-checkbox.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased text-gray-900">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[#0f172a] relative overflow-hidden">

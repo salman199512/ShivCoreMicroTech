@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-indigo-400 tracking-[0.2em] mb-1">Total Invoiced</p>
-                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ $totalInvoiced >= 1000000 ? number_format($totalInvoiced / 1000000, 1) . 'M' : ($totalInvoiced >= 1000 ? number_format($totalInvoiced / 1000, 1) . 'K' : number_format($totalInvoiced, 2)) }}</p>
+                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format($totalInvoiced, 1) }}</p>
                         </div>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
@@ -42,7 +42,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-emerald-500 tracking-[0.2em] mb-1">Total Received</p>
-                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ $totalReceived >= 1000000 ? number_format($totalReceived / 1000000, 1) . 'M' : ($totalReceived >= 1000 ? number_format($totalReceived / 1000, 1) . 'K' : number_format($totalReceived, 2)) }}</p>
+                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format($totalReceived, 1) }}</p>
                         </div>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
@@ -57,7 +57,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-rose-500 tracking-[0.2em] mb-1">Total Outstanding</p>
-                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ $totalDue >= 1000000 ? number_format($totalDue / 1000000, 1) . 'M' : ($totalDue >= 1000 ? number_format($totalDue / 1000, 1) . 'K' : number_format($totalDue, 2)) }}</p>
+                            <p class="text-4xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format($totalDue, 1) }}</p>
                         </div>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">

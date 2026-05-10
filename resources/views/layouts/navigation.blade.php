@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments*')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
                         {{ __('Payments') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('invoice-logs.index')" :active="request()->routeIs('invoice-logs*')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
+                        {{ __('Logs') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('settings.edit')" :active="request()->routeIs('settings*')" class="nav-link-premium text-xs font-black uppercase tracking-[0.2em] text-slate-500 hover:text-indigo-600 border-none">
                         {{ __('Setting') }}
                     </x-nav-link>
@@ -91,6 +94,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('payments.index')" :active="request()->routeIs('payments*')">
                 {{ __('Payments') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('invoice-logs.index')" :active="request()->routeIs('invoice-logs*')">
+                {{ __('Logs') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('settings.edit')" :active="request()->routeIs('settings*')">
                 {{ __('Setting') }}

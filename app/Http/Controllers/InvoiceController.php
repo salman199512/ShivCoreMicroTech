@@ -131,4 +131,24 @@ class InvoiceController extends Controller
         
         return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
     }
+
+    /**
+     * Send a manual reminder email for the invoice.
+     */
+    public function sendReminder(Request $request, string $id)
+    {
+        $invoice = Invoice::with('customer')->findOrFail($id);
+        $customer = $invoice->customer;
+        $settings = \App\Models\Setting::all()->pluck('value', 'key')->toArray();
+        
+        \Illuminate\Support\Facades\Mail::to($customer->email)->send(new \App\Mail\ReminderEmail($customer, [$invoice], 'Manual Reminder', $settings));
+        
+        \App\Models\EmailLog::create([
+            'invoice_id' => $invoice->id,
+            'type' => 'Manual Reminder',
+            'sent_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Reminder sent successfully!');
+    }
 }

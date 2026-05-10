@@ -17,6 +17,16 @@
       "premium.css"
     ]
   },
+   "resources/css/custom-checkbox.css": {
+    "file": "assets/custom-checkbox-DipHvfc2.css",
+    "src": "resources/css/custom-checkbox.css",
+    "isEntry": true,
+    "name": "custom-checkbox",
+    "names": [
+      "custom-checkbox.css"
+    ]
+  
+  },
   "resources/js/app.js": {
     "file": "assets/app-DFwq5eDd.js",
     "name": "app",

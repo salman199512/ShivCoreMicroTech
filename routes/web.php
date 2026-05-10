@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\EmailLogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('invoices', InvoiceController::class);
     Route::post('invoices/import', [InvoiceController::class, 'import'])->name('invoices.import');
+    Route::post('invoices/{invoice}/remind', [InvoiceController::class, 'sendReminder'])->name('invoices.remind');
 
     Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
     Route::post('payments', [PaymentController::class, 'store'])->name('payments.store');
@@ -32,6 +34,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');
     Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+
+    Route::get('invoice-logs', [EmailLogController::class, 'index'])->name('invoice-logs.index');
 });
 
 require __DIR__.'/auth.php';

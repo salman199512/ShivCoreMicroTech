@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/premium.css',
+                'resources/css/custom-checkbox.css',
                 'resources/js/app.js'
             ],
             refresh: true,

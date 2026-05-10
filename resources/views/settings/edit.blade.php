@@ -36,6 +36,10 @@
                                 <input type="email" name="company_email" value="{{ $settings['company_email'] ?? '' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
                             </div>
                             <div>
+                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Secondary Correspondence Email</label>
+                                <input type="email" name="company_secondary_email" value="{{ $settings['company_secondary_email'] ?? '' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                            </div>
+                            <div>
                                 <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Primary Contact Number</label>
                                 <input type="text" name="company_phone" value="{{ $settings['company_phone'] ?? '' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
                             </div>

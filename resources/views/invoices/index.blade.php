@@ -24,20 +24,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="vibrant-card p-8 bg-[linear-gradient(135deg,#f8f9ff_0%,#f1f5f9_100%)] border-indigo-100 relative">
                 <div class="flex items-start justify-between mb-8">
-                    <div>
+                    <div class="flex-grow">
                         <h3 class="text-2xl font-black text-slate-800 mb-2 tracking-tighter">Import Invoices</h3>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                            <p class="text-xs text-indigo-500 font-bold uppercase tracking-widest">Global Synchronization via Excel Schema</p>
-                            <span class="text-slate-300 hidden sm:inline">|</span>
-                            <a href="{{ asset('invoice.xlsx') }}" download class="text-xs text-emerald-600 hover:text-emerald-800 font-black uppercase tracking-widest flex items-center gap-2 transition">
+                        <div class="flex flex-col md:flex-row md:items-center gap-3">
+                            <p class="text-xs text-indigo-500 font-bold uppercase tracking-widest m-0">Global Synchronization via Excel Schema</p>
+                            <span class="text-slate-300 hidden md:inline">|</span>
+                            <a href="{{ asset('invoice.xlsx') }}" download class="text-xs text-emerald-600 hover:text-emerald-800 font-black uppercase tracking-widest inline-flex items-center gap-2 transition whitespace-nowrap">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                 Download Sample
                             </a>
                         </div>
                     </div>
-                    <button onclick="toggleImport()" class="text-slate-400 hover:text-slate-600 transition p-2">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
+                   
                 </div>
                 <form action="{{ route('invoices.import') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf

@@ -27,7 +27,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-indigo-400 tracking-[0.2em] mb-1">Total Billed</p>
-                            <p class="text-3xl font-black text-slate-800 tracking-tighter">Rs. {{ $stats['total'] >= 1000000 ? number_format($stats['total'] / 1000000, 1) . 'M' : ($stats['total'] >= 1000 ? number_format($stats['total'] / 1000, 1) . 'K' : number_format($stats['total'], 2)) }}</p>
+                            <p class="text-3xl font-black text-slate-800 tracking-tighter">Rs. {{  number_format($stats['total'], 1) }}</p>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-emerald-500 tracking-[0.2em] mb-1">Total Cleared</p>
-                            <p class="text-3xl font-black text-slate-800 tracking-tighter">Rs. {{ $stats['received'] >= 1000000 ? number_format($stats['received'] / 1000000, 1) . 'M' : ($stats['received'] >= 1000 ? number_format($stats['received'] / 1000, 1) . 'K' : number_format($stats['received'], 2)) }}</p>
+                            <p class="text-3xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format($stats['received'], 1) }}</p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-black uppercase text-rose-500 tracking-[0.2em] mb-1">Open Liability</p>
-                            <p class="text-3xl font-black text-slate-800 tracking-tighter">Rs. {{ $stats['due'] >= 1000000 ? number_format($stats['due'] / 1000000, 1) . 'M' : ($stats['due'] >= 1000 ? number_format($stats['due'] / 1000, 1) . 'K' : number_format($stats['due'], 2)) }}</p>
+                            <p class="text-3xl font-black text-slate-800 tracking-tighter">Rs. {{ number_format( $stats['due'], 1) }}</p>
                         </div>
                     </div>
                 </div>

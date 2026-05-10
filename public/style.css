@@ -1,0 +1,120 @@
+/* Global admin font and checkbox style overrides */
+html, body, #app {
+    font-family: 'Poppins', sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    color: #111827 !important;
+    font-weight: 400 !important;
+}
+
+body, button, input, select, textarea, optgroup, option, label, a, span, div, p {
+    font-family: inherit !important;
+    font-weight: 400 !important;
+}
+
+h1, h2, h3, h4, h5, h6, strong, b {
+    font-family: inherit !important;
+}
+
+/* Keep utility font weights where they are intended */
+.font-normal { font-weight: 400 !important; }
+.font-medium { font-weight: 500 !important; }
+.font-semibold { font-weight: 600 !important; }
+.font-bold { font-weight: 700 !important; }
+.font-extrabold, .font-black { font-weight: 800 !important; }
+
+/* Custom checkbox style for login and auth forms */
+:root {
+    --custom-checkbox-size: 22px;
+}
+
+input[type="checkbox"].custom-checkbox {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    width: var(--custom-checkbox-size) !important;
+    height: var(--custom-checkbox-size) !important;
+    min-width: var(--custom-checkbox-size) !important;
+    min-height: var(--custom-checkbox-size) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0.5rem !important;
+    border: 2px solid #c7d6ff !important;
+    background-color: #f8fbff !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
+    overflow: hidden !important;
+}
+
+input[type="checkbox"].custom-checkbox::before {
+    content: '' !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: inherit !important;
+    box-sizing: border-box !important;
+}
+
+input[type="checkbox"].custom-checkbox:checked {
+    border-color: #6366f1 !important;
+    background-color: #6366f1 !important;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e") !important;
+    background-size: 12px 12px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: none !important;
+}
+
+input[type="checkbox"].custom-checkbox:focus-visible,
+input[type="checkbox"].custom-checkbox:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+}
+
+input[type="checkbox"].custom-checkbox:hover {
+    border-color: #6366f1 !important;
+}
+
+input[type="checkbox"].custom-checkbox:not(:checked) {
+    background-image: none !important;
+}
+
+.text-4xl {
+    font-size: 22px !important;
+    line-height: 2.5rem !important;
+}
+
+.text-3xl {
+    font-size:  22px !important;
+    line-height: 2.25rem !important;
+}
+
+input, select, textarea {
+    color: #374151 !important;
+    font-weight: normal !important;
+}
+.premium-table tbody td{
+    font-weight: normal !important;
+}
+input.font-extrabold, input.font-black {
+    font-weight: normal !important;
+}
+select.font-bold{
+    font-weight: normal !important;
+}
+::placeholder{
+    font-weight: normal !important;
+}
+input.font-bold{
+    font-weight: normal !important;
+}
+label.uppercase{
+    text-transform: unset !important;
+    font-weight: 500 !important;
+}

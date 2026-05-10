@@ -29,7 +29,7 @@
         <!-- Remember Me & Forgot Password -->
         <div class="flex items-center justify-between mt-6">
             <label for="remember_me" class="inline-flex items-center group cursor-pointer">
-                <input id="remember_me" type="checkbox" name="remember" class="premium-checkbox" style="width: 20px !important; height: 20px !important;">
+                <input id="remember_me" type="checkbox" name="remember" class="custom-checkbox">
                 <span class="ms-2 text-sm text-slate-600 group-hover:text-slate-900 transition-colors">{{ __('Remember me') }}</span>
             </label>
 
