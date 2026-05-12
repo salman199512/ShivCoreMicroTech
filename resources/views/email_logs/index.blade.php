@@ -19,6 +19,10 @@
                             <tr class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
                                 <th class="pb-6">No</th>
                                 <th class="pb-6">Invoice No.</th>
+                                <th class="pb-6">Customer</th>
+                                <th class="pb-6">Total Amount</th>
+                                <th class="pb-6">Received</th>
+                                <th class="pb-6">Due</th>
                                 <th class="pb-6">Reminder Type</th>
                                 <th class="pb-6">Sent Date</th>
                             </tr>
@@ -48,6 +52,10 @@
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                         {data: 'invoice_no', name: 'invoice.invoice_no'},
+                        {data: 'customer_name', name: 'invoice.customer.name', orderable: false, searchable: true},
+                        {data: 'total_amount', name: 'invoice.amount', orderable: false, searchable: false},
+                        {data: 'received_amount', name: 'invoice.received_amount', orderable: false, searchable: false},
+                        {data: 'due_amount', name: 'invoice.due_amount', orderable: false, searchable: false},
                         {data: 'type', name: 'type'},
                         {data: 'sent_at', name: 'sent_at'},
                     ],

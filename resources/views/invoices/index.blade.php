@@ -35,7 +35,7 @@
                             </a>
                         </div>
                     </div>
-                   
+
                 </div>
                 <form action="{{ route('invoices.import') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf

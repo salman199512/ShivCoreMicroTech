@@ -142,8 +142,8 @@
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase mb-1">Follow-up Rules</p>
-                                <p class="text-sm font-bold text-slate-900">Team 1: {{ $invoice->customer->team1_days ?: 'Global' }} Days</p>
-                                <p class="text-sm font-bold text-slate-900">Team 2: {{ $invoice->customer->team2_days ?: 'Global' }} Days</p>
+                                <p class="text-sm font-bold text-slate-900">Reminder 1: {{ $invoice->customer->team1_days ?: 'Global' }} Days</p>
+                                <p class="text-sm font-bold text-slate-900">Reminder 2: {{ $invoice->customer->team2_days ?: 'Global' }} Days</p>
                             </div>
                         </div>
                         <div class="mt-8">

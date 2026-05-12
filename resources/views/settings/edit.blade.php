@@ -60,7 +60,7 @@
 
                         <div class="space-y-8">
                             <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
-                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-3">Team 1 Escalation (First Contact)</label>
+                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-3">Reminder 1 Escalation (First Contact)</label>
                                 <div class="flex items-center gap-4">
                                     <input type="number" name="team1_days" value="{{ $settings['team1_days'] ?? '60' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-xl text-slate-800 py-3">
                                     <span class="text-slate-400 font-black text-xs uppercase tracking-widest">Days</span>
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
-                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-3">Team 2 Escalation (Critical)</label>
+                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-3">Reminder 2 Escalation (Critical)</label>
                                 <div class="flex items-center gap-4">
                                     <input type="number" name="team2_days" value="{{ $settings['team2_days'] ?? '5' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-xl text-slate-800 py-3">
                                     <span class="text-slate-400 font-black text-xs uppercase tracking-widest">Days</span>
