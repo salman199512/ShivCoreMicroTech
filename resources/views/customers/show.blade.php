@@ -18,6 +18,21 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="vibrant-card p-6 animate-fade-up">
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3">Primary Email</p>
+                    <p class="font-black text-slate-800 break-words">{{ $customer->email }}</p>
+                </div>
+                <div class="vibrant-card p-6 animate-fade-up">
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3">Secondary Email 1</p>
+                    <p class="font-black text-slate-800 break-words">{{ $customer->email_2 ?? 'Not set' }}</p>
+                </div>
+                <div class="vibrant-card p-6 animate-fade-up">
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3">Secondary Email 2</p>
+                    <p class="font-black text-slate-800 break-words">{{ $customer->email_3 ?? 'Not set' }}</p>
+                </div>
+            </div>
+
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="vibrant-card vibrant-card-indigo p-8 animate-fade-up" style="animation-delay: 0.1s">

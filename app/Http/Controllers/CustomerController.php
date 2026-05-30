@@ -56,6 +56,8 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'email_2' => 'nullable|email',
+            'email_3' => 'nullable|email',
             'team1_days' => 'required|integer',
             'team2_days' => 'required|integer',
         ]);
@@ -99,6 +101,8 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'email_2' => 'nullable|email',
+            'email_3' => 'nullable|email',
             'team1_days' => 'required|integer',
             'team2_days' => 'required|integer',
         ]);

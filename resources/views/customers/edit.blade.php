@@ -37,6 +37,18 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
+                            <label for="email_2" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Secondary Email Address 1</label>
+                            <input type="email" name="email_2" id="email_2" value="{{ $customer->email_2 }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 h-14" placeholder="client+sec1@example.com">
+                        </div>
+
+                        <div>
+                            <label for="email_3" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Secondary Email Address 2</label>
+                            <input type="email" name="email_3" id="email_3" value="{{ $customer->email_3 }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 h-14" placeholder="client+sec2@example.com">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
                             <label for="team1_days" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Team 1 Override (Days)</label>
                             <input type="number" name="team1_days" id="team1_days" value="{{ $customer->team1_days ?? 60 }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14" required>
                         </div>

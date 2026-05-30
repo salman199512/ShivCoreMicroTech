@@ -96,7 +96,8 @@ class SendInvoiceReminders extends Command
         elseif ($types->contains('team2')) $primaryType = 'team2';
 
         try {
-            Mail::to($customer->email)->send(new ReminderEmail($customer, $invoices, $primaryType, $settings));
+            $recipients = $customer->emailRecipients;
+            Mail::to($recipients)->send(new ReminderEmail($customer, $invoices, $primaryType, $settings));
 
             foreach ($eligibleInvoices as $item) {
                 EmailLog::create([
@@ -107,9 +108,9 @@ class SendInvoiceReminders extends Command
                 $this->info("Logged {$item['type']} reminder for Invoice {$item['invoice']->invoice_no}");
             }
 
-            $this->info("Sent aggregated email to {$customer->email} with " . count($invoices) . " invoices.");
+            $this->info("Sent aggregated email to " . implode(', ', $recipients) . " with " . count($invoices) . " invoices.");
         } catch (\Exception $e) {
-            $this->error("Failed to send email to {$customer->email}: " . $e->getMessage());
+            $this->error("Failed to send email to " . implode(', ', $customer->emailRecipients) . ": " . $e->getMessage());
         }
     }
 }

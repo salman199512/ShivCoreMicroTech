@@ -141,7 +141,8 @@ class InvoiceController extends Controller
         $customer = $invoice->customer;
         $settings = \App\Models\Setting::all()->pluck('value', 'key')->toArray();
         
-        \Illuminate\Support\Facades\Mail::to($customer->email)->send(new \App\Mail\ReminderEmail($customer, [$invoice], 'Manual Reminder', $settings));
+        $recipients = $customer->emailRecipients;
+        \Illuminate\Support\Facades\Mail::to($recipients)->send(new \App\Mail\ReminderEmail($customer, [$invoice], 'Manual Reminder', $settings));
         
         \App\Models\EmailLog::create([
             'invoice_id' => $invoice->id,
