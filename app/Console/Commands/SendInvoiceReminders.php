@@ -12,26 +12,13 @@ use Illuminate\Support\Facades\Mail;
 
 class SendInvoiceReminders extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'app:send-invoice-reminders';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Send automated invoice follow-up emails grouped by customer';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         $settings = Setting::all()->pluck('value', 'key');
+
         $invoices = Invoice::whereIn('status', ['Pending', 'Partial'])
             ->with('customer', 'emailLogs')
             ->get();
@@ -40,15 +27,20 @@ class SendInvoiceReminders extends Command
 
         foreach ($groupedInvoices as $customerId => $customerInvoices) {
             $customer = $customerInvoices->first()->customer;
+
+            // ✅ FIX #1: Moved customer-specific days OUTSIDE the invoice loop
+            //    (they're per-customer, not per-invoice)
+            // ✅ FIX #2: Use ?? (null coalescing) instead of ?: (Elvis operator)
+            //    ?: treats 0 as falsy — if team1_days=0, it wrongly fell back to global default.
+            //    ?? only falls back when value is strictly null.
+            $t1Days = $customer->team1_days ?? ($settings['team1_days'] ?? 60);
+            $t2Days = $customer->team2_days ?? ($settings['team2_days'] ?? 5);
+
             $eligibleInvoices = [];
             $now = Carbon::now();
 
             foreach ($customerInvoices as $invoice) {
                 $invoiceDate = Carbon::parse($invoice->invoice_date);
-                
-                // Use customer specific days if exists, else global
-                $t1Days = $customer->team1_days ?: ($settings['team1_days'] ?? 60);
-                $t2Days = $customer->team2_days ?: ($settings['team2_days'] ?? 5);
 
                 $t1Date = $invoiceDate->copy()->addDays($t1Days);
                 $t2Date = $t1Date->copy()->addDays($t2Days);
@@ -58,7 +50,6 @@ class SendInvoiceReminders extends Command
 
                 $type = null;
 
-                // Determine if this invoice needs a reminder
                 if (!$t1Log && $now->greaterThanOrEqualTo($t1Date)) {
                     $type = 'team1';
                 } elseif ($t1Log && !$t2Log && $now->greaterThanOrEqualTo($t2Date)) {
@@ -74,7 +65,7 @@ class SendInvoiceReminders extends Command
                 if ($type) {
                     $eligibleInvoices[] = [
                         'invoice' => $invoice,
-                        'type' => $type
+                        'type'    => $type,
                     ];
                 }
             }
@@ -87,30 +78,41 @@ class SendInvoiceReminders extends Command
 
     private function sendAggregatedEmail($customer, $eligibleInvoices, $settings)
     {
+        $recipients = $customer->emailRecipients ?? [];
+
+        if (empty($recipients)) {
+            $this->error("Skipping customer ID {$customer->id}: no valid recipient emails on record.");
+            return;
+        }
+
         $invoices = collect($eligibleInvoices)->pluck('invoice');
-        
-        // Determine the overall "type" for the subject (use the highest priority type)
+
         $types = collect($eligibleInvoices)->pluck('type')->unique();
         $primaryType = 'team1';
-        if ($types->contains('recurring')) $primaryType = 'recurring';
-        elseif ($types->contains('team2')) $primaryType = 'team2';
+        if ($types->contains('recurring')) {
+            $primaryType = 'recurring';
+        } elseif ($types->contains('team2')) {
+            $primaryType = 'team2';
+        }
 
         try {
-            $recipients = $customer->emailRecipients;
-            Mail::to($recipients)->send(new ReminderEmail($customer, $invoices, $primaryType, $settings));
+            Mail::to($recipients)->send(
+                new ReminderEmail($customer, $invoices, $primaryType, $settings)
+            );
 
             foreach ($eligibleInvoices as $item) {
                 EmailLog::create([
                     'invoice_id' => $item['invoice']->id,
-                    'type' => $item['type'],
-                    'sent_at' => now(),
+                    'type'       => $item['type'],
+                    'sent_at'    => now(),
                 ]);
                 $this->info("Logged {$item['type']} reminder for Invoice {$item['invoice']->invoice_no}");
             }
 
             $this->info("Sent aggregated email to " . implode(', ', $recipients) . " with " . count($invoices) . " invoices.");
+
         } catch (\Exception $e) {
-            $this->error("Failed to send email to " . implode(', ', $customer->emailRecipients) . ": " . $e->getMessage());
+            $this->error("Failed to send email to " . implode(', ', $recipients) . ": " . $e->getMessage());
         }
     }
 }

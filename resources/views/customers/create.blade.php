@@ -48,13 +48,13 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="team1_days" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Team 1 Override (Days)</label>
+                            <label for="team1_days" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Reminder 1 </label>
                             <input type="number" name="team1_days" id="team1_days" value="60" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14" required>
                             <p class="text-[10px] text-indigo-400 mt-2 font-bold uppercase tracking-widest">Global Default applied if left 60</p>
                         </div>
 
                         <div>
-                            <label for="team2_days" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Team 2 Override (Days)</label>
+                            <label for="team2_days" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Reminder 2</label>
                             <input type="number" name="team2_days" id="team2_days" value="5" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14" required>
                             <p class="text-[10px] text-indigo-400 mt-2 font-bold uppercase tracking-widest">Global Default applied if left 5</p>
                         </div>
