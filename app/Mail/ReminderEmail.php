@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Symfony\Component\Mime\Email;
 
 class ReminderEmail extends Mailable
 {
@@ -53,6 +54,17 @@ class ReminderEmail extends Mailable
         return new Content(
             view: 'emails.reminder',
         );
+    }
+
+    public function withSymfonyMessage($message): void
+    {
+        if (! method_exists($message, 'getHeaders')) {
+            return;
+        }
+
+        $message->getHeaders()->addTextHeader('X-Priority', '1');
+        $message->getHeaders()->addTextHeader('X-MSMail-Priority', 'High');
+        $message->getHeaders()->addTextHeader('Importance', 'high');
     }
 
     /**

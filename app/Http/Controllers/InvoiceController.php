@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Customer;
+use Illuminate\Support\Str;
 use App\Imports\InvoicesImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -59,7 +60,17 @@ class InvoiceController extends Controller
     {
         $customers = Customer::all();
         $selected_customer = $request->customer_id ?? null;
-        return view('invoices.create', compact('customers', 'selected_customer'));
+
+        $lastInvoice = Invoice::latest('id')->value('invoice_no');
+        $nextNumber = 1;
+
+        if ($lastInvoice && preg_match('/(\d+)/', $lastInvoice, $matches)) {
+            $nextNumber = (int) $matches[1] + 1;
+        }
+
+        $defaultInvoiceNo = 'INV-' . str_pad((string) $nextNumber, 6, '0', STR_PAD_LEFT);
+
+        return view('invoices.create', compact('customers', 'selected_customer', 'defaultInvoiceNo'));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Support\MailConfig;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        try {
+            if (! Schema::hasTable('settings')) {
+                return;
+            }
+
+            MailConfig::applyFromSettings();
+        } catch (\Throwable $e) {
+            // Ignore DB boot-time failures; the default mail config remains available.
+        }
     }
 }

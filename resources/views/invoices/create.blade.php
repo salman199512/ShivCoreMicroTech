@@ -35,7 +35,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="invoice_no" class="block text-[10px] font-black uppercase text-slate-400 tracking-tighter mb-2">Invoice No</label>
-                            <input type="text" name="invoice_no" id="invoice_no" value="INV-{{ strtoupper(Str::random(6)) }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14" required>
+                            <input type="text" name="invoice_no" id="invoice_no" value="{{ old('invoice_no') }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-black text-slate-800 h-14" required>
                         </div>
 
                         <div>

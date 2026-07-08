@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Block obvious random bot / scanner requests early
+    RewriteCond %{HTTP_USER_AGENT} (python-requests|curl|wget|nmap|nikto|sqlmap|masscan|zgrab|bot|crawler|spider) [NC]
+    RewriteRule .* - [F,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

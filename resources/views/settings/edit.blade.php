@@ -46,6 +46,58 @@
                         </div>
                     </div>
 
+                    <!-- SMTP / Email Delivery -->
+                    <div class="premium-card p-8">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-black text-slate-800 tracking-tight">SMTP / Email Delivery</h3>
+                                <p class="text-xs text-emerald-500 font-bold uppercase tracking-widest">Database-backed mail settings</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Mailer</label>
+                                <input type="text" name="mail_mailer" value="{{ $settings['mail_mailer'] ?? 'smtp' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">SMTP Host</label>
+                                <input type="text" name="mail_host" value="{{ $settings['mail_host'] ?? '' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">SMTP Port</label>
+                                    <input type="number" name="mail_port" value="{{ $settings['mail_port'] ?? '587' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Encryption</label>
+                                    <input type="text" name="mail_encryption" value="{{ $settings['mail_encryption'] ?? 'tls' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">SMTP Username</label>
+                                <input type="email" name="mail_username" value="{{ $settings['mail_username'] ?? '' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">SMTP Password</label>
+                                <input type="password" name="mail_password" value="" placeholder="Leave blank to keep existing password" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">From Email</label>
+                                    <input type="email" name="mail_from_address" value="{{ $settings['mail_from_address'] ?? '' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">From Name</label>
+                                    <input type="text" name="mail_from_name" value="{{ $settings['mail_from_name'] ?? '' }}" class="block w-full border-slate-200 rounded-xl shadow-sm focus:ring-indigo-500 focus:border-indigo-500 font-bold text-slate-700 py-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Follow-up Rules -->
                     <div class="premium-card p-8">
                         <div class="flex items-center gap-4 mb-8">

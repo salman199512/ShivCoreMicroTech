@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Support\MailConfig;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -25,8 +26,14 @@ class SettingController extends Controller
         $data = $request->except('_token');
         
         foreach ($data as $key => $value) {
+            if ($key === 'mail_password') {
+                $value = MailConfig::encodeValue($value);
+            }
+
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
+
+        MailConfig::applyFromSettings();
 
         return redirect()->route('settings.edit')->with('success', 'Settings updated successfully.');
     }

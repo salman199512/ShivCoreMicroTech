@@ -1,5 +1,27 @@
 <?php
 
+$dynamicMailSettings = [];
+
+try {
+    if (app()->bound('db')) {
+        $connection = app('db')->connection();
+        if ($connection && method_exists($connection, 'getSchemaBuilder')) {
+            $schema = $connection->getSchemaBuilder();
+            if ($schema->hasTable('settings')) {
+                $dynamicMailSettings = app('db')
+                    ->table('settings')
+                    ->pluck('value', 'key')
+                    ->mapWithKeys(function ($value, $key) {
+                        return [$key => \App\Support\MailConfig::decodeValue($key, $value)];
+                    })
+                    ->toArray();
+            }
+        }
+    }
+} catch (Throwable $e) {
+    $dynamicMailSettings = [];
+}
+
 return [
 
     /*
@@ -14,7 +36,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
+    'default' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_mailer', env('MAIL_MAILER', 'log')),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,11 +63,11 @@ return [
             'transport' => 'smtp',
             'scheme' => env('MAIL_SCHEME'),
             //'url' => env('MAIL_URL'),
-            'host' => env('MAIL_HOST', '127.0.0.1'),
-            'port' => env('MAIL_PORT', 2525),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'host' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_host', env('MAIL_HOST', '127.0.0.1')),
+            'port' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_port', env('MAIL_PORT', 2525)),
+            'username' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_username', env('MAIL_USERNAME')),
+            'password' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_password', env('MAIL_PASSWORD')),
+            'encryption' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_encryption', env('MAIL_ENCRYPTION', 'tls')),
            // 'timeout' => null,
             'verify_peer' => false,
           //  'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
@@ -125,8 +147,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
+        'address' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_from_address', env('MAIL_FROM_ADDRESS', 'hello@example.com')),
+        'name' => \App\Support\MailConfig::resolveSettingValue($dynamicMailSettings, 'mail_from_name', env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel'))),
     ],
 
 ];
